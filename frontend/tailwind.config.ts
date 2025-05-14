@@ -1,14 +1,12 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
-const config = {
+const config: Config = {
   content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-    "*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  prefix: "",
   theme: {
     container: {
       center: true,
@@ -52,29 +50,29 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        purple: {
-          50: "#f5f3ff",
-          100: "#ede9fe",
-          200: "#ddd6fe",
-          500: "#8b5cf6",
-          600: "#7c3aed",
-          700: "#6d28d9",
-        },
-        teal: {
-          50: "#f0fdfa",
-          100: "#ccfbf1",
-          200: "#99f6e4",
-          500: "#14b8a6",
-          600: "#0d9488",
-          700: "#0f766e",
+        blue: {
+          50: "#f0f7ff",
+          100: "#e0eefe",
+          200: "#b9ddfe",
+          300: "#7cc2fd",
+          400: "#36a4f9",
+          500: "#0c87eb",
+          600: "#0068c9",
+          700: "#0054a3",
+          800: "#064886",
+          900: "#0a3c6f",
         },
         orange: {
-          50: "#fff7ed",
-          100: "#ffedd5",
-          200: "#fed7aa",
-          500: "#f97316",
-          600: "#ea580c",
-          700: "#c2410c",
+          50: "#fff8ed",
+          100: "#ffefd4",
+          200: "#ffdba8",
+          300: "#ffc070",
+          400: "#ff9a36",
+          500: "#ff7d0e",
+          600: "#f25c05",
+          700: "#c93e06",
+          800: "#9f300d",
+          900: "#7e290f",
         },
       },
       borderRadius: {
@@ -99,6 +97,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+};
 
-export default config
+export default config;

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-var userSchema = new mongoose.Schema(
+var courseSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -12,6 +12,12 @@ var userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    description: {
+      type: String,
+    },
+    fees: {
+      type: Number,
+    },
   },
   {
     timestamps: true,
@@ -19,4 +25,4 @@ var userSchema = new mongoose.Schema(
 );
 
 //Export the model
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Course", courseSchema);

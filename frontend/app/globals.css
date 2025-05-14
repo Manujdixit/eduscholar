@@ -1,4 +1,16 @@
+@tailwind base;
+@tailwind components;
 @tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+}
 
 @layer base {
   :root {
@@ -8,7 +20,7 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 271 91% 65%;
+    --primary: 221 83% 25%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -20,7 +32,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 271 91% 65%;
+    --ring: 221 83% 25%;
     --radius: 0.5rem;
   }
 
@@ -31,7 +43,7 @@
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 271 91% 65%;
+    --primary: 217.2 91.2% 59.8%;
     --primary-foreground: 222.2 47.4% 11.2%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -43,7 +55,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 271 91% 65%;
+    --ring: 224.3 76.3% 48%;
   }
 }
 
@@ -54,64 +66,4 @@
   body {
     @apply bg-background text-foreground;
   }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slide-in {
-  from {
-    transform: translateX(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 0.6;
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 1s ease-out forwards;
-}
-
-.animate-slide-in {
-  animation: slide-in 0.5s ease-out forwards;
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-pulse {
-  animation: pulse 3s ease-in-out infinite;
 }

@@ -2,6 +2,7 @@ import express from "express";
 import {
   searchUniversities,
   getAffordableUniversities,
+  searchCourses,
 } from "../controllers/university.controller.js";
 
 const router = express.Router();
