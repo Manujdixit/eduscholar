@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { useUniversitySearch } from "@/hooks/useUniversitySearch";
 import Link from "next/link";
 
-export default function SearchResults() {
+function SearchResultsContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
   const { results, loading, error, search } = useUniversitySearch();
@@ -75,5 +75,15 @@ export default function SearchResults() {
         ))}
       </div>
     </div>
+  );
+}
+
+export default function SearchResults() {
+  return (
+    <Suspense
+      fallback={<div className="container mx-auto px-4 py-8">Loading...</div>}
+    >
+      <SearchResultsContent />
+    </Suspense>
   );
 }
