@@ -1,51 +1,34 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
-
-const testimonials = [
-  {
-    id: 1,
-    name: "Aamani Majumdar",
-    role: "Marketing Professional",
-    image: "/placeholder.svg?height=100&width=100",
-    quote:
-      "A seamless and user-friendly platform. I found the perfect course and improved my skills in no time! Highly recommended.",
-    hasVideo: false,
-  },
-  {
-    id: 2,
-    name: "Steven John",
-    role: "Marketing Professional",
-    image: "/placeholder.svg?height=100&width=100",
-    quote:
-      "A seamless and user-friendly platform. I found the perfect course and improved my skills in no time! Highly recommended.",
-    hasVideo: false,
-  },
-  {
-    id: 3,
-    name: "Sarah L",
-    role: "Marketing Professional",
-    image: "/placeholder.svg?height=100&width=100",
-    quote:
-      "A seamless and user-friendly platform. I found the perfect course and improved my skills in no time! Highly recommended.",
-    hasVideo: true,
-  },
-  {
-    id: 4,
-    name: "Vinay Rattan",
-    role: "Marketing Professional",
-    image: "/placeholder.svg?height=100&width=100",
-    quote:
-      "A seamless and user-friendly platform. I found the perfect course and improved my skills in no time! Highly recommended.",
-    hasVideo: false,
-  },
-];
+import { useTestimonials } from "../hooks/useTestimonials";
 
 export default function TestimonialsSection() {
+  const { testimonials: testimonialsData, loading, error } = useTestimonials();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const visibleTestimonials = testimonials.slice(
+
+  if (loading) {
+    return (
+      <section className="py-16 bg-blue-800">
+        <div className="container mx-auto px-4">
+          <div className="text-white">Loading testimonials...</div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="py-16 bg-blue-800">
+        <div className="container mx-auto px-4">
+          <div className="text-white">Failed to load testimonials</div>
+        </div>
+      </section>
+    );
+  }
+
+  const visibleTestimonials = testimonialsData.slice(
     currentIndex,
     currentIndex + 3
   );
@@ -55,65 +38,79 @@ export default function TestimonialsSection() {
   };
 
   const handleNext = () => {
-    setCurrentIndex(Math.min(testimonials.length - 3, currentIndex + 1));
+    setCurrentIndex(Math.min(testimonialsData.length - 3, currentIndex + 1));
   };
 
   return (
-    <section className="py-16 bg-blue-800 text-white">
+    <section className="py-16 bg-blue-800">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold">
+          <h2 className="text-3xl font-bold text-white">
             What Students <span className="text-orange-500">Say!</span>
           </h2>
           <div className="flex space-x-2">
             <button
               onClick={handlePrev}
               disabled={currentIndex === 0}
-              className="p-2 rounded-full bg-blue-700 hover:bg-blue-600 disabled:opacity-50"
+              className="p-1 text-white disabled:opacity-50"
+              aria-label="Previous testimonial"
             >
-              <ChevronLeft size={20} />
+              <ChevronLeft size={24} />
             </button>
             <button
               onClick={handleNext}
-              disabled={currentIndex >= testimonials.length - 3}
-              className="p-2 rounded-full bg-blue-700 hover:bg-blue-600 disabled:opacity-50"
+              disabled={currentIndex >= testimonialsData.length - 3}
+              className="p-1 text-white disabled:opacity-50"
+              aria-label="Next testimonial"
             >
-              <ChevronRight size={20} />
+              <ChevronRight size={24} />
             </button>
           </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
           {visibleTestimonials.map((testimonial) => (
-            <div
-              key={testimonial.id}
-              className="bg-white text-gray-800 rounded-lg p-6 relative"
-            >
-              <div className="mb-4">
-                <span className="text-5xl text-gray-200">"</span>
-                <p className="text-gray-600 relative -mt-6 pl-4">
-                  {testimonial.quote}
+            <div key={testimonial._id} className="overflow-hidden">
+              {/* Testimonial speech bubble */}
+              <div className="relative bg-white rounded-lg p-6 mb-6 shadow-lg">
+                <div className="text-gray-400 text-5xl font-serif leading-none h-8 opacity-50 mb-1">
+                  "
+                </div>
+                <p className="text-black text-sm leading-relaxed">
+                  {testimonial.testimonial}
                 </p>
+
+                {/* Speech bubble pointer */}
+                <div
+                  className="absolute -bottom-2 left-8 w-4 h-4 bg-white"
+                  style={{ clipPath: "polygon(0 0, 100% 0, 0 100%)" }}
+                ></div>
               </div>
 
-              <div className="flex items-center mt-4">
-                <div className="relative">
-                  <Image
-                    src={testimonial.image || "/placeholder.svg"}
-                    alt={testimonial.name}
-                    width={60}
-                    height={60}
-                    className="rounded-full"
-                  />
-                  {testimonial.hasVideo && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-full">
-                      <Play size={24} className="text-white" />
-                    </div>
-                  )}
-                </div>
-                <div className="ml-4">
-                  <h4 className="font-bold">{testimonial.name}</h4>
-                  <p className="text-sm text-gray-500">{testimonial.role}</p>
+              {/* Author info */}
+              <div className="flex items-center">
+                {/* {testimonial.profilePic && (
+                  <div className="relative">
+                    <img
+                      src={testimonial.profilePic}
+                      alt={testimonial.name}
+                      className="w-12 h-12 rounded-full object-cover"
+                    />
+                  </div>
+                )} */}
+                <div className="ml-3">
+                  <h4 className="font-semibold text-white text-sm">
+                    {testimonial.name}
+                  </h4>
+                  <div className="flex items-center">
+                    {[...Array(Math.round(testimonial.rating || 0))].map(
+                      (_, i) => (
+                        <span key={i} className="text-yellow-400">
+                          ★
+                        </span>
+                      )
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

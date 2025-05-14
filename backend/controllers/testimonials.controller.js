@@ -1,4 +1,4 @@
-const Testimonial = require("../models/testimonials.js");
+import Testimonial from "../models/testimonials.js";
 
 // Get testimonials
 export const getTestimonials = async (req, res) => {

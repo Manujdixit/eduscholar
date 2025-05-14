@@ -1,6 +1,8 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-const universitySchema = new mongoose.Schema(
+const { Schema, model } = mongoose;
+
+const universitySchema = new Schema(
   {
     name: {
       type: String,
@@ -33,7 +35,7 @@ const universitySchema = new mongoose.Schema(
     },
     courses: [
       {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "Course",
       },
     ],
@@ -43,4 +45,6 @@ const universitySchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("University", universitySchema);
+const University = model("University", universitySchema);
+
+export default University;

@@ -16,7 +16,7 @@ app.use(express.json({ limit: "16kb" }));
 app.use("/api/universities", universityRoutes);
 app.use("/api/testimonials", testimonialRoutes);
 app.use("/api/articles", articleRoutes);
-app.use("/api/leads", leadRoutes);
+app.use("/api/lead", leadRoutes);
 
 connectDB()
   .then(() => {

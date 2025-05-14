@@ -1,6 +1,8 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-var userSchema = new mongoose.Schema(
+const { Schema, model } = mongoose;
+
+const streamSchema = new Schema(
   {
     name: {
       type: String,
@@ -15,4 +17,6 @@ var userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("User", userSchema);
+const Stream = model("Stream", streamSchema);
+
+export default Stream;

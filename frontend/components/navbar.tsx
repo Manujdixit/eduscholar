@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +11,14 @@ import { cn } from "@/lib/utils";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
 
   return (
     <header className="w-full bg-white shadow-sm">
@@ -19,7 +28,7 @@ export default function Navbar() {
             <div className="text-blue-800 font-bold text-xl">
               <span className="text-blue-800">Dummy Name</span>
               <Image
-                src="/placeholder.svg?height=20&width=20"
+                src="/logo.svg"
                 alt="Logo"
                 width={20}
                 height={20}
@@ -58,12 +67,16 @@ export default function Navbar() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-3">
-            <Button className="bg-blue-800 hover:bg-blue-900 text-white">
-              Apply Now
-            </Button>
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white">
-              Request a Free Consultation
-            </Button>
+            <Link href="/register">
+              <Button className="bg-blue-800 hover:bg-blue-900 text-white">
+                Apply Now
+              </Button>
+            </Link>
+            <Link href="/register">
+              <Button className="bg-orange-500 hover:bg-orange-600 text-white">
+                Request a Free Consultation
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -112,12 +125,16 @@ export default function Navbar() {
             >
               Student Resources
             </Link>
-            <Button className="bg-blue-800 hover:bg-blue-900 text-white w-full">
-              Apply Now
-            </Button>
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white w-full">
-              Request a Free Consultation
-            </Button>
+            <Link href="/register">
+              <Button className="bg-blue-800 hover:bg-blue-900 text-white w-full">
+                Apply Now
+              </Button>
+            </Link>
+            <Link href="/register">
+              <Button className="bg-orange-500 hover:bg-orange-600 text-white w-full">
+                Request a Free Consultation
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -131,10 +148,16 @@ export default function Navbar() {
             </button>
             <Input
               type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyPress={(e) => e.key === "Enter" && handleSearch()}
               placeholder="Search for Universities, Courses and More"
               className="pl-10 pr-4 py-2 w-full rounded-md bg-blue-700 border-blue-600 text-white placeholder-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <Button className="ml-2 bg-blue-600 hover:bg-blue-700 text-white">
+            <Button
+              className="ml-2 bg-blue-600 hover:bg-blue-700 text-white"
+              onClick={handleSearch}
+            >
               Search
             </Button>
           </div>

@@ -1,6 +1,8 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-var userSchema = new mongoose.Schema({
+const { Schema, model } = mongoose;
+
+const testimonialSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -16,5 +18,6 @@ var userSchema = new mongoose.Schema({
   },
 });
 
-//Export the model
-module.exports = mongoose.model("User", userSchema);
+const Testimonial = model("Testimonial", testimonialSchema);
+
+export default Testimonial;

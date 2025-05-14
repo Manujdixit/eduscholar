@@ -1,4 +1,4 @@
-const Article = require("../models/articles.js");
+import Article from "../models/articles.js";
 
 // Get recent articles
 export const getRecentArticles = async (req, res) => {

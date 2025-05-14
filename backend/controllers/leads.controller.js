@@ -1,4 +1,4 @@
-const Lead = require("../models/leads.js");
+import Lead from "../models/leads.js";
 
 // Capture lead
 export const captureLead = async (req, res) => {

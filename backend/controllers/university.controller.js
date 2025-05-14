@@ -1,29 +1,31 @@
-const University = require("../models/university.js");
+import University from "../models/university.js";
 
 // Search universities API
 export const searchUniversities = async (req, res) => {
   try {
-    const { q, stream, minFees, maxFees, location } = req.query;
+    // const { q, stream, minFees, maxFees, location } = req.query;
+    const { q } = req.query;
 
     // Build filter object
     const filter = {};
     if (q) {
       filter.name = { $regex: q, $options: "i" };
     }
-    if (stream) {
-      filter.stream = stream;
-    }
-    if (minFees || maxFees) {
-      filter.fees = {};
-      if (minFees) filter.fees.$gte = parseFloat(minFees);
-      if (maxFees) filter.fees.$lte = parseFloat(maxFees);
-    }
-    if (location) {
-      filter.location = { $regex: location, $options: "i" };
-    }
+    // if (stream) {
+    //   filter.stream = stream;
+    // }
+    // if (minFees || maxFees) {
+    //   filter.fees = {};
+    //   if (minFees) filter.fees.$gte = parseFloat(minFees);
+    //   if (maxFees) filter.fees.$lte = parseFloat(maxFees);
+    // }
+    // if (location) {
+    //   filter.location = { $regex: location, $options: "i" };
+    // }
 
     const universities = await University.find(filter)
       .sort({ ranking: 1 })
+      // .select("name stream location fees ranking affordabilityScore")
       .select("name stream location fees ranking affordabilityScore")
       .limit(20);
 

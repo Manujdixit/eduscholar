@@ -211,21 +211,21 @@ export default function CostComparisonSection() {
           </div>
         </div>
 
-        <div className="mt-16 bg-[#FAF4F0] rounded-lg p-8 flex flex-col md:flex-row items-center justify-between">
+        <div className="mt-24 mb-16 bg-[#FAF4F0] rounded-lg p-8 flex flex-col md:flex-row items-center justify-between">
           <div>
             <h3 className="text-2xl font-bold text-blue-800 mb-2">
               Check Eligibility for Admission
             </h3>
           </div>
-          <div className="mt-4 md:mt-0 flex items-center">
+          <div className="mt-4 md:mt-0 max-h-10 flex items-center">
             <Button className="bg-orange-500 hover:bg-orange-600 text-white">
               Check Now
             </Button>
             <Image
-              src="/placeholder.svg?height=100&width=100"
+              src="/logo.svg"
               alt="Graduation cap"
-              width={100}
-              height={100}
+              width={150}
+              height={150}
               className="ml-4"
             />
           </div>

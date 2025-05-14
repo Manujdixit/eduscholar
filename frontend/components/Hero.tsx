@@ -20,10 +20,10 @@ export default function HeroSection() {
             <Button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-md font-medium flex items-center">
               Compare University
               <Image
-                src="/placeholder.svg?height=20&width=20"
+                src="/logo-button.svg"
                 alt="Icon"
-                width={20}
-                height={20}
+                width={40}
+                height={40}
                 className="ml-2"
               />
             </Button>

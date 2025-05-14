@@ -4,78 +4,31 @@ import { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useUniversities } from "@/hooks/useUniversities";
 
 const categories = [
   "All",
-  "MBA",
-  "Engineering",
+  "Computer Science",
+  "Software Engineering",
+  "Computer Engineering",
+  "Information Technology",
   "Data Science",
-  "Law",
-  "Medicine",
   "Social Science",
   "Business Analytics",
   "Artificial Intelligence",
 ];
 
-const universities = [
-  {
-    name: "Edith Cowan University",
-    logo: "/placeholder.svg?height=60&width=60",
-    address: "270 Joondalup Drive, Joondalup WA 6027, Australia",
-    tuition: "$18,000/year",
-    prPathway: "Yes",
-    intakes: "Feb, July, Nov",
-    courses: "40+",
-  },
-  {
-    name: "Bond University",
-    logo: "/placeholder.svg?height=60&width=60",
-    address: "270 Joondalup Drive, Joondalup WA 6027, Australia",
-    tuition: "$18,000/year",
-    prPathway: "Yes",
-    intakes: "Feb, July, Nov",
-    courses: "40+",
-  },
-  {
-    name: "Curtin University",
-    logo: "/placeholder.svg?height=60&width=60",
-    address: "270 Joondalup Drive, Joondalup WA 6027, Australia",
-    tuition: "$18,000/year",
-    prPathway: "Yes",
-    intakes: "Feb, July, Nov",
-    courses: "40+",
-  },
-  {
-    name: "Flinders University",
-    logo: "/placeholder.svg?height=60&width=60",
-    address: "270 Joondalup Drive, Joondalup WA 6027, Australia",
-    tuition: "$18,000/year",
-    prPathway: "Yes",
-    intakes: "Feb, July, Nov",
-    courses: "40+",
-  },
-  {
-    name: "La Trobe University",
-    logo: "/placeholder.svg?height=60&width=60",
-    address: "270 Joondalup Drive, Joondalup WA 6027, Australia",
-    tuition: "$18,000/year",
-    prPathway: "Yes",
-    intakes: "Feb, July, Nov",
-    courses: "40+",
-  },
-  {
-    name: "Monash University",
-    logo: "/placeholder.svg?height=60&width=60",
-    address: "270 Joondalup Drive, Joondalup WA 6027, Australia",
-    tuition: "$18,000/year",
-    prPathway: "Yes",
-    intakes: "Feb, July, Nov",
-    courses: "40+",
-  },
-];
-
 export default function UniversitiesSection() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const { universities, loading, error } = useUniversities(activeCategory);
+
+  if (error) {
+    return (
+      <div className="py-16 text-center text-red-600">
+        Error loading universities: {error}
+      </div>
+    );
+  }
 
   return (
     <section className="py-16 bg-gray-50">
@@ -104,62 +57,71 @@ export default function UniversitiesSection() {
         </div>
 
         {/* University Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {universities.map((uni, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-lg shadow-md overflow-hidden"
-            >
-              <div className="p-6">
-                <div className="flex items-center mb-4">
-                  <Image
-                    src={uni.logo || "/placeholder.svg"}
-                    alt={uni.name}
-                    width={60}
-                    height={60}
-                    className="mr-4"
-                  />
-                  <div>
-                    <h3 className="font-bold text-blue-800">{uni.name}</h3>
-                    <p className="text-sm text-gray-500">{uni.address}</p>
-                  </div>
-                </div>
-
-                <div className="bg-orange-100 p-2 rounded-md mb-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-orange-800">
-                      Tuitions Start From
-                    </span>
-                    <span className="font-bold text-orange-500">
-                      {uni.tuition}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <p className="text-sm text-gray-500">PR Pathway:</p>
-                    <p className="font-medium">{uni.prPathway}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Intakes:</p>
-                    <p className="font-medium">{uni.intakes}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Courses:</p>
-                    <p className="font-medium">{uni.courses}</p>
-                  </div>
-                </div>
-
-                <Button
-                  variant="outline"
-                  className="w-full text-blue-800 border-blue-800 hover:bg-blue-50"
-                >
-                  Check Transfer Options
-                </Button>
-              </div>
+        <div className="flex justify-center items-center">
+          {loading ? (
+            <div className="text-center text-gray-600">
+              Loading universities...
             </div>
-          ))}
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+              {universities.map((uni, index) => (
+                <div
+                  key={uni.name + index}
+                  className="bg-white rounded-lg shadow-md overflow-hidden"
+                >
+                  <div className="p-6">
+                    <div className="flex items-center mb-4">
+                      {/* <div className="rounded-full overflow-hidden mr-4">
+                        <Image
+                          src="/placeholder.svg"
+                          alt={uni.name}
+                          width={60}
+                          height={60}
+                          className="object-contain"
+                        />
+                      </div> */}
+                      <div>
+                        <h3 className="font-bold text-blue-800 text-lg">
+                          {uni.name}
+                        </h3>
+                        <p className="text-sm text-gray-500">{uni.location}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between items-center rounded-sm overflow-hidden bg-orange-50 mb-2">
+                      <div className="text-orange-500 p-2 font-normal">
+                        Tuitions Start From
+                      </div>
+                      <div className="bg-orange-400 text-white p-2 font-medium">
+                        ${uni.fees.toLocaleString()}/year
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col text-sm">
+                      <div className="grid grid-cols-[100px_1fr] gap-1">
+                        <p className="text-gray-500">Stream:</p>
+                        <p className="font-medium">{uni.stream}</p>
+
+                        <p className="text-gray-500">Location:</p>
+                        <p className="font-medium">{uni.location}</p>
+
+                        <p className="text-gray-500">Score:</p>
+                        <p className="font-medium">
+                          {uni.affordabilityScore}/10
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    className="w-full text-gray-600 bg-gray-100 hover:bg-gray-200 font-medium"
+                  >
+                    Check Transfer Options
+                  </Button>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="flex justify-center mt-8">

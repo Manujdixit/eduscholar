@@ -1,6 +1,8 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-var courseSchema = new mongoose.Schema(
+const { Schema, model } = mongoose;
+
+const courseSchema = new Schema(
   {
     name: {
       type: String,
@@ -24,5 +26,6 @@ var courseSchema = new mongoose.Schema(
   }
 );
 
-//Export the model
-module.exports = mongoose.model("Course", courseSchema);
+const Course = model("Course", courseSchema);
+
+export default Course;
