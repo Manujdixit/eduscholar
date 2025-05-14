@@ -17,8 +17,11 @@ export default function Navbar() {
   const handleSearch = () => {
     if (searchQuery.trim()) {
       router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      setIsOpen(false);
     }
   };
+
+  const closeMenu = () => setIsOpen(false);
 
   return (
     <header className="w-full bg-white shadow-sm">
@@ -101,36 +104,47 @@ export default function Navbar() {
         {/* Mobile Navigation */}
         <div className={cn("md:hidden", isOpen ? "block" : "hidden")}>
           <div className="flex flex-col space-y-4 pt-4 pb-3">
-            <Link href="/" className="text-gray-600 hover:text-blue-800">
+            <Link
+              href="/"
+              className="text-gray-600 hover:text-blue-800"
+              onClick={closeMenu}
+            >
               Home
             </Link>
-            <Link href="/compare" className="text-gray-600 hover:text-blue-800">
+            <Link
+              href="/compare"
+              className="text-gray-600 hover:text-blue-800"
+              onClick={closeMenu}
+            >
               Compare
             </Link>
             <Link
               href="/examinations"
               className="text-gray-600 hover:text-blue-800"
+              onClick={closeMenu}
             >
               Examinations
             </Link>
             <Link
               href="/transfer-assistance"
               className="text-gray-600 hover:text-blue-800"
+              onClick={closeMenu}
             >
               Transfer Assistance
             </Link>
             <Link
               href="/student-resources"
               className="text-gray-600 hover:text-blue-800"
+              onClick={closeMenu}
             >
               Student Resources
             </Link>
-            <Link href="/register">
+            <Link href="/register" onClick={closeMenu}>
               <Button className="bg-blue-800 hover:bg-blue-900 text-white w-full">
                 Apply Now
               </Button>
             </Link>
-            <Link href="/register">
+            <Link href="/register" onClick={closeMenu}>
               <Button className="bg-orange-500 hover:bg-orange-600 text-white w-full">
                 Request a Free Consultation
               </Button>
