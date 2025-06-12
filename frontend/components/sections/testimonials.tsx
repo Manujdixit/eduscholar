@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { useTestimonials } from "../../hooks/useTestimonials";
-import { TestimonialsLoadingSkeleton } from "@/components/ui/testimonial-skeleton";
+import { TestimonialsLoadingSkeleton } from "@/components/skeleton/testimonial-skeleton";
 
 export default function TestimonialsSection() {
   const { testimonials: testimonialsData, loading, error } = useTestimonials();

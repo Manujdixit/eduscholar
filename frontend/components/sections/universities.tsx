@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useUniversities } from "@/hooks/useUniversities";
-import { UniversitiesLoadingSkeleton } from "@/components/ui/university-skeleton";
+import { UniversitiesLoadingSkeleton } from "@/components/skeleton/university-skeleton";
 
 const categories = [
   "All",

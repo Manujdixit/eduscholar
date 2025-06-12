@@ -4,7 +4,7 @@ import { useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { useComprehensiveSearch } from "@/hooks/useComprehensiveSearch";
-import { SearchResultsLoadingSkeleton } from "@/components/ui/search-skeleton";
+import { SearchResultsLoadingSkeleton } from "@/components/skeleton/search-skeleton";
 import {
   GraduationCap,
   BookOpen,
