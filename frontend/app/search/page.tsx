@@ -174,10 +174,10 @@ function SearchResultsContent() {
                       <p className="text-gray-600 text-sm mb-3">
                         {article.meta_desc}
                       </p>
-                      <p className="text-gray-500 text-xs mb-4">
+                      {/* <p className="text-gray-500 text-xs mb-4">
                         Published:{" "}
                         {new Date(article.createdAt).toLocaleDateString()}
-                      </p>
+                      </p> */}
                       <div className="text-purple-600 hover:text-purple-800">
                         Read article →
                       </div>
