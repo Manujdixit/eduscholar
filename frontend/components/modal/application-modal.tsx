@@ -10,6 +10,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { ChevronDown, Send } from "lucide-react";
+import { useApplicationLead } from "@/hooks/useApplicationLead";
+import { toast } from "sonner";
 
 interface ApplicationModalProps {
   open: boolean;
@@ -21,18 +23,20 @@ export function ApplicationModal({
   onOpenChange,
 }: ApplicationModalProps) {
   const [step, setStep] = useState(1);
+  const { submitApplication, isLoading, error, resetError } =
+    useApplicationLead();
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
-    phone: "",
-    coursePreference: "",
+    phn_no: "",
+    course_preference: "",
     gender: "",
-    dateOfBirth: "",
-    preferredIntake: "",
-    preferredState: "",
-    englishTest: "",
-    visaStatus: "",
+    dob: "",
+    preffered_intake: "",
+    preffered_state: "",
+    english_test: "",
+    visa: "",
   });
 
   const handleInputChange = (field: string, value: string) => {
@@ -42,22 +46,22 @@ export function ApplicationModal({
   // Validation functions
   const isStep1Complete = () => {
     return (
-      formData.firstName.trim() !== "" &&
-      formData.lastName.trim() !== "" &&
+      formData.first_name.trim() !== "" &&
+      formData.last_name.trim() !== "" &&
       formData.email.trim() !== "" &&
-      formData.phone.trim() !== "" &&
-      formData.coursePreference.trim() !== ""
+      formData.phn_no.trim() !== "" &&
+      formData.course_preference.trim() !== ""
     );
   };
 
   const isStep2Complete = () => {
     return (
       formData.gender.trim() !== "" &&
-      formData.dateOfBirth.trim() !== "" &&
-      formData.preferredIntake.trim() !== "" &&
-      formData.preferredState.trim() !== "" &&
-      formData.englishTest.trim() !== "" &&
-      formData.visaStatus.trim() !== ""
+      formData.dob.trim() !== "" &&
+      formData.preffered_intake.trim() !== "" &&
+      formData.preffered_state.trim() !== "" &&
+      formData.english_test.trim() !== "" &&
+      formData.visa.trim() !== ""
     );
   };
 
@@ -68,19 +72,44 @@ export function ApplicationModal({
   const handleNext = () => {
     if (isStep1Complete()) {
       setStep(2);
+      resetError();
     }
   };
 
   const handleBack = () => {
     setStep(1);
+    resetError();
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (isFormComplete()) {
-      // Handle form submission
-      console.log("Form submitted:", formData);
-      onOpenChange(false);
-      setStep(1);
+      try {
+        await submitApplication(formData);
+        toast.success(
+          "Application submitted successfully! We'll contact you soon."
+        );
+        setTimeout(() => {
+          onOpenChange(false);
+          setStep(1);
+          // Reset form data
+          setFormData({
+            first_name: "",
+            last_name: "",
+            email: "",
+            phn_no: "",
+            course_preference: "",
+            gender: "",
+            dob: "",
+            preffered_intake: "",
+            preffered_state: "",
+            english_test: "",
+            visa: "",
+          });
+        }, 500);
+      } catch (error) {
+        console.error("Failed to submit application:", error);
+        // Error is handled by the hook
+      }
     }
   };
 
@@ -122,6 +151,19 @@ export function ApplicationModal({
             Apply Now
           </DialogTitle>
 
+          {/* Error Message */}
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+              {error}
+              <button
+                onClick={resetError}
+                className="ml-2 text-red-700 hover:text-red-900"
+              >
+                ×
+              </button>
+            </div>
+          )}
+
           {/* Step Indicators */}
           <div className="flex items-center justify-center space-x-2 mb-6">
             <div
@@ -151,14 +193,16 @@ export function ApplicationModal({
             <div className="grid grid-cols-2 gap-4">
               <Input
                 placeholder="First Name"
-                value={formData.firstName}
-                onChange={(e) => handleInputChange("firstName", e.target.value)}
+                value={formData.first_name}
+                onChange={(e) =>
+                  handleInputChange("first_name", e.target.value)
+                }
                 className="h-12 bg-gray-100 border-0 placeholder:text-gray-500"
               />
               <Input
                 placeholder="Last Name"
-                value={formData.lastName}
-                onChange={(e) => handleInputChange("lastName", e.target.value)}
+                value={formData.last_name}
+                onChange={(e) => handleInputChange("last_name", e.target.value)}
                 className="h-12 bg-gray-100 border-0 placeholder:text-gray-500"
               />
             </div>
@@ -174,15 +218,17 @@ export function ApplicationModal({
             <Input
               placeholder="Phone Number"
               type="tel"
-              value={formData.phone}
-              onChange={(e) => handleInputChange("phone", e.target.value)}
+              value={formData.phn_no}
+              onChange={(e) => handleInputChange("phn_no", e.target.value)}
               className="h-12 bg-gray-100 border-0 placeholder:text-gray-500"
             />
 
             <SelectField
               placeholder="Course preference"
-              value={formData.coursePreference}
-              onChange={(value) => handleInputChange("coursePreference", value)}
+              value={formData.course_preference}
+              onChange={(value) =>
+                handleInputChange("course_preference", value)
+              }
               options={[
                 "Computer Science",
                 "Business Administration",
@@ -216,8 +262,8 @@ export function ApplicationModal({
               />
               <SelectField
                 placeholder="Date of Birth"
-                value={formData.dateOfBirth}
-                onChange={(value) => handleInputChange("dateOfBirth", value)}
+                value={formData.dob}
+                onChange={(value) => handleInputChange("dob", value)}
                 options={Array.from({ length: 50 }, (_, i) =>
                   (new Date().getFullYear() - 16 - i).toString()
                 )}
@@ -226,15 +272,15 @@ export function ApplicationModal({
 
             <SelectField
               placeholder="Preferred Intake"
-              value={formData.preferredIntake}
-              onChange={(value) => handleInputChange("preferredIntake", value)}
+              value={formData.preffered_intake}
+              onChange={(value) => handleInputChange("preffered_intake", value)}
               options={["Fall 2025", "Spring 2026", "Summer 2026", "Fall 2026"]}
             />
 
             <SelectField
               placeholder="Preferred State"
-              value={formData.preferredState}
-              onChange={(value) => handleInputChange("preferredState", value)}
+              value={formData.preffered_state}
+              onChange={(value) => handleInputChange("preffered_state", value)}
               options={[
                 "California",
                 "New York",
@@ -251,26 +297,26 @@ export function ApplicationModal({
 
             <SelectField
               placeholder="English Test"
-              value={formData.englishTest}
-              onChange={(value) => handleInputChange("englishTest", value)}
+              value={formData.english_test}
+              onChange={(value) => handleInputChange("english_test", value)}
               options={["IELTS", "TOEFL", "PTE", "Duolingo", "Not taken yet"]}
             />
 
             <SelectField
               placeholder="Do you hold any Visa"
-              value={formData.visaStatus}
-              onChange={(value) => handleInputChange("visaStatus", value)}
+              value={formData.visa}
+              onChange={(value) => handleInputChange("visa", value)}
               options={["Yes", "No", "Applied", "Planning to apply"]}
             />
 
             <div className="flex justify-end mt-6">
               <Button
                 onClick={handleSubmit}
-                disabled={!isFormComplete()}
+                disabled={!isFormComplete() || isLoading}
                 className="bg-blue-800 hover:bg-blue-900 text-white px-8 py-2 flex items-center space-x-2 disabled:bg-gray-400 disabled:cursor-not-allowed"
               >
-                <span>Send</span>
-                <Send className="h-4 w-4" />
+                <span>{isLoading ? "Submitting..." : "Send"}</span>
+                {!isLoading && <Send className="h-4 w-4" />}
               </Button>
             </div>
           </div>
