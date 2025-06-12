@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -9,7 +11,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { ChevronDown, Send } from "lucide-react";
+import { ChevronDown, Send, Calendar } from "lucide-react";
 import { useApplicationLead } from "@/hooks/useApplicationLead";
 import { toast } from "sonner";
 
@@ -32,14 +34,14 @@ export function ApplicationModal({
     phn_no: "",
     course_preference: "",
     gender: "",
-    dob: "",
+    dob: null as Date | null,
     preffered_intake: "",
     preffered_state: "",
     english_test: "",
     visa: "",
   });
 
-  const handleInputChange = (field: string, value: string) => {
+  const handleInputChange = (field: string, value: string | Date | null) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -57,7 +59,7 @@ export function ApplicationModal({
   const isStep2Complete = () => {
     return (
       formData.gender.trim() !== "" &&
-      formData.dob.trim() !== "" &&
+      formData.dob !== null &&
       formData.preffered_intake.trim() !== "" &&
       formData.preffered_state.trim() !== "" &&
       formData.english_test.trim() !== "" &&
@@ -84,7 +86,12 @@ export function ApplicationModal({
   const handleSubmit = async () => {
     if (isFormComplete()) {
       try {
-        await submitApplication(formData);
+        // Format the data for submission
+        const submissionData = {
+          ...formData,
+          dob: formData.dob ? formData.dob.toISOString().split('T')[0] : "", // Format as YYYY-MM-DD
+        };
+        await submitApplication(submissionData);
         toast.success(
           "Application submitted successfully! We'll contact you soon."
         );
@@ -99,7 +106,7 @@ export function ApplicationModal({
             phn_no: "",
             course_preference: "",
             gender: "",
-            dob: "",
+            dob: null,
             preffered_intake: "",
             preffered_state: "",
             english_test: "",
@@ -260,14 +267,24 @@ export function ApplicationModal({
                 onChange={(value) => handleInputChange("gender", value)}
                 options={["Male", "Female", "Other", "Prefer not to say"]}
               />
-              <SelectField
-                placeholder="Date of Birth"
-                value={formData.dob}
-                onChange={(value) => handleInputChange("dob", value)}
-                options={Array.from({ length: 50 }, (_, i) =>
-                  (new Date().getFullYear() - 16 - i).toString()
-                )}
-              />
+              <div className="relative">
+                <div className="react-datepicker-wrapper">
+                  <DatePicker
+                    selected={formData.dob}
+                    onChange={(date) => handleInputChange("dob", date)}
+                    dateFormat="dd/MM/yyyy"
+                    placeholderText="Date of Birth"
+                    showYearDropdown
+                    yearDropdownItemNumber={100}
+                    scrollableYearDropdown
+                    maxDate={new Date(new Date().setFullYear(new Date().getFullYear() - 16))}
+                    minDate={new Date(new Date().setFullYear(new Date().getFullYear() - 100))}
+                    className="w-full h-12 px-4 bg-gray-100 border-0 rounded-md text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none placeholder:text-gray-500"
+                    wrapperClassName="w-full"
+                  />
+                </div>
+                <Calendar className="absolute right-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+              </div>
             </div>
 
             <SelectField
