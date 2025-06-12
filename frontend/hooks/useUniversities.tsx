@@ -1,16 +1,9 @@
 import { useState, useEffect } from "react";
-
-interface University {
-  name: string;
-  stream: string;
-  location: string;
-  fees: number;
-  affordabilityScore: number;
-}
+import axios from "axios";
 
 export const useUniversities = (stream: string = "All") => {
-  const [universities, setUniversities] = useState<University[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [universities, setUniversities] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -19,23 +12,25 @@ export const useUniversities = (stream: string = "All") => {
       try {
         const endpoint =
           stream === "All"
-            ? `${process.env.NEXT_PUBLIC_API_URL}/api/universities/top-affordable`
-            : `${
-                process.env.NEXT_PUBLIC_API_URL
-              }/api/universities/top-affordable?stream=${encodeURIComponent(
-                stream
-              )}`;
+            ? `${process.env.NEXT_PUBLIC_API_URL}/api/v1/college/top`
+            : `${process.env.NEXT_PUBLIC_API_URL}/api/v1/college/top`;
 
-        const response = await fetch(endpoint);
-        if (!response.ok) {
-          throw new Error("Failed to fetch universities");
-        }
+        const response = await axios.get(endpoint, {
+          params: stream !== "All" ? { stream } : undefined,
+        });
 
-        const data = await response.json();
-        setUniversities(data.data);
+        setUniversities(response.data);
         setError(null);
       } catch (err) {
-        setError(err instanceof Error ? err.message : "An error occurred");
+        setError(
+          axios.isAxiosError(err)
+            ? err.response?.data?.message ||
+                err.message ||
+                "Failed to fetch universities"
+            : err instanceof Error
+            ? err.message
+            : "An error occurred"
+        );
         setUniversities([]);
       } finally {
         setLoading(false);

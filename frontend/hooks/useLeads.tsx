@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 interface LeadData {
   fname: string;
@@ -17,27 +18,22 @@ export const useLeads = () => {
     setError(null);
 
     try {
-      const response = await fetch(
+      const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/lead`,
+        data,
         {
-          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
         }
       );
 
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.message || "Something went wrong");
-      }
-
-      return result;
+      return response.data;
     } catch (err: any) {
-      setError(err.message);
-      throw err;
+      const errorMessage =
+        err.response?.data?.message || err.message || "Something went wrong";
+      setError(errorMessage);
+      throw new Error(errorMessage);
     } finally {
       setIsLoading(false);
     }
