@@ -89,7 +89,7 @@ export function ApplicationModal({
         // Format the data for submission
         const submissionData = {
           ...formData,
-          dob: formData.dob ? formData.dob.toISOString().split('T')[0] : "", // Format as YYYY-MM-DD
+          dob: formData.dob ? formData.dob.toISOString().split("T")[0] : "", // Format as YYYY-MM-DD
         };
         await submitApplication(submissionData);
         toast.success(
@@ -277,8 +277,16 @@ export function ApplicationModal({
                     showYearDropdown
                     yearDropdownItemNumber={100}
                     scrollableYearDropdown
-                    maxDate={new Date(new Date().setFullYear(new Date().getFullYear() - 16))}
-                    minDate={new Date(new Date().setFullYear(new Date().getFullYear() - 100))}
+                    maxDate={
+                      new Date(
+                        new Date().setFullYear(new Date().getFullYear() - 16)
+                      )
+                    }
+                    minDate={
+                      new Date(
+                        new Date().setFullYear(new Date().getFullYear() - 100)
+                      )
+                    }
                     className="w-full h-12 px-4 bg-gray-100 border-0 rounded-md text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none placeholder:text-gray-500"
                     wrapperClassName="w-full"
                   />
