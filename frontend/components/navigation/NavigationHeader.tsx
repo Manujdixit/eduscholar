@@ -4,8 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ApplicationModal } from "@/components/modal/application-modal";
-import { ConsultationModal } from "@/components/modal/consultation-modal";
+import { ApplicationModal } from "@/components/modal/lead-modal";
+import { ConsultationModal } from "@/components/modal/contact-modal";
 import { cn } from "@/lib/utils";
 
 export default function NavigationHeader() {
