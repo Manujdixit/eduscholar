@@ -15,7 +15,7 @@ export default function HeroSection() {
             </h1>
             <p className="text-lg mb-6">
               Struggling with high fees or course dissatisfaction? <br />
-              We'll help you transfer to the right university.
+              We&apos;ll help you transfer to the right university.
             </p>
             <Button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-md font-medium flex items-center">
               Compare University

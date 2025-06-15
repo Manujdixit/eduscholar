@@ -184,7 +184,7 @@ export default function SearchDropdown({
         </div>
       ) : searchQuery.trim().length > 2 ? (
         <div className="p-4 text-center text-gray-500">
-          <p className="text-sm">No results found for "{searchQuery}"</p>
+          <p className="text-sm">No results found for: {searchQuery}</p>
           <p className="text-xs mt-1">Try a different search term</p>
         </div>
       ) : null}

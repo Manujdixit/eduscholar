@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useTestimonials } from "../../hooks/useTestimonials";
 import { TestimonialsLoadingSkeleton } from "@/components/skeleton/testimonial-skeleton";
 
@@ -69,7 +69,7 @@ export default function TestimonialsSection() {
               {/* Testimonial speech bubble */}
               <div className="relative bg-white rounded-lg p-6 mb-6 shadow-lg">
                 <div className="text-gray-400 text-5xl font-serif leading-none h-8 opacity-50 mb-1">
-                  "
+                  &quot;
                 </div>
                 <p className="text-black text-sm leading-relaxed">
                   {testimonial.testimonial}

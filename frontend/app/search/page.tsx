@@ -13,7 +13,6 @@ import {
   Star,
   Clock,
 } from "lucide-react";
-import Link from "next/link";
 
 function SearchResultsContent() {
   const searchParams = useSearchParams();

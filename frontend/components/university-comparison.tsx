@@ -2,8 +2,6 @@ import Image from "next/image";
 import {
   Search,
   Plus,
-  Phone,
-  MessageCircle,
   GraduationCap,
   DollarSign,
   Award,
@@ -53,13 +51,13 @@ export default function ComaprisonComponent() {
             <span className="text-orange-500">University for You</span>
           </h2>
           <p className="text-gray-600 text-lg leading-relaxed">
-            Whether it's a change in career interests, difficulty with the
+            Whether it&apos;s a change in career interests, difficulty with the
             current course, or a desire to move to a better suited university,
             switching University in Australia is possible—but the process can be
-            confusing. That's where PickMyUni comes in! Choosing the right
-            university is a big decision, we're here to make it easier. Compare
-            universities and find the best fit for your budget, preferred
-            courses, career goals, and lifestyle.
+            confusing. That&apos;s where PickMyUni comes in! Choosing the right
+            university is a big decision, we&apos;re here to make it easier.
+            Compare universities and find the best fit for your budget,
+            preferred courses, career goals, and lifestyle.
           </p>
         </div>
 

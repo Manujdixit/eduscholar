@@ -1,6 +1,5 @@
 "use client";
 import { useArticles } from "@/hooks/useArticles";
-import Image from "next/image";
 import Link from "next/link";
 import { ArticlesLoadingSkeleton } from "@/components/skeleton/article-skeleton";
 

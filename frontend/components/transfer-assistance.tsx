@@ -1,6 +1,3 @@
-import Image from "next/image";
-
-// Data for the "How to Transfer" grid section, as seen in the screenshot.
 const howToTransferData = [
   {
     name: "Check Transfer Policies",
@@ -34,7 +31,6 @@ const howToTransferData = [
   },
 ];
 
-// Data for the FAQ section, as seen in the screenshot.
 const faqData = [
   { question: "How do I transfer to another university in Australia?" },
   { question: "Can you transfer from one university to another in Australia?" },
@@ -46,7 +42,6 @@ const faqData = [
   { question: "Can you change universities after getting a student visa?" },
 ];
 
-// Data for the "How We Help with Course Transfer" section
 const courseTransferHelp = [
   {
     title: "Assessing Eligibility:",
@@ -347,7 +342,7 @@ export default function TransferAssistance() {
             <span className="text-orange-500">Today!</span>
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-gray-600">
-            If you're considering transferring universities in Australia,
+            If you&apos;re considering transferring universities in Australia,
             PickMyUni is here to help you take the next step with confidence.
             Our dedicated team will ensure your course transfer process is
             hassle-free, allowing you to focus on your education and future.

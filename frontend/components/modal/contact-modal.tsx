@@ -86,7 +86,8 @@ export function ConsultationModal({
               Thank you for your submission!
             </h3>
             <p className="text-gray-600">
-              We'll get back to you shortly to schedule your free consultation.
+              We&apos;ll get back to you shortly with a confirmation of your
+              consultation.
             </p>
           </div>
         ) : (

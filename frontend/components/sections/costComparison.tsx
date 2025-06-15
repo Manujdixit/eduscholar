@@ -181,8 +181,8 @@ export default function CostComparisonSection() {
               <span className="text-orange-500">PickMyUni</span>
             </h2>
             <p className="text-gray-600 mb-8">
-              We've helped 1000+ international students successfully transfer
-              and save money on education in Australia.
+              We&apos;re here to help you find the best university for your and
+              save money on education in Australia.
             </p>
 
             <div className="space-y-6">
