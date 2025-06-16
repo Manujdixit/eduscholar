@@ -96,7 +96,9 @@ export default function ContactPage() {
                 <div className="text-green-600 text-lg font-semibold mb-2">
                   ✅ Request sent successfully!
                 </div>
-                <p className="text-gray-600">We'll get back to you soon.</p>
+                <p className="text-gray-600">
+                  We&apos;ll get back to you soon.
+                </p>
               </div>
             ) : (
               <ContactForm
