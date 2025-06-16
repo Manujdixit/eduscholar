@@ -22,7 +22,7 @@ export default function RootLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }>) {
   console.log(params);
 
@@ -31,7 +31,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
-        <UniLayout params={Promise.resolve({ id: params.id })} />
+        <UniLayout params={params} />
         <main className="flex-grow">{children}</main>
       </body>
     </html>
