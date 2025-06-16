@@ -1,5 +1,4 @@
 import UniLayout from "@/components/university/UniLayout";
-import { Layout } from "lucide-react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 

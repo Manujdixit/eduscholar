@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 function UniLayout({ params }: { params: Promise<{ id: string }> }) {
   const { id } = React.use(params);
 
-  let { college, loading, error } = useUniversity(Number(id));
+  const { college, loading, error } = useUniversity(Number(id));
 
   if (error) return <div>Error: {error}</div>;
   if (loading) return <div>Loading...</div>;
