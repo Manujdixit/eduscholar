@@ -1,9 +1,9 @@
-import ArticlesSection from "@/components/sections/articles";
-import CostComparisonSection from "@/components/sections/costComparison";
-import HeroSection from "@/components/sections/Hero";
-import ProcessSection from "@/components/sections/process";
-import TestimonialsSection from "@/components/sections/testimonials";
-import UniversitiesSection from "@/components/sections/universities";
+import ArticlesSection from "@/components/home/articles";
+import CostComparisonSection from "@/components/home/costComparison";
+import HeroSection from "@/components/home/Hero";
+import ProcessSection from "@/components/home/process";
+import TestimonialsSection from "@/components/home/testimonials";
+import UniversitiesSection from "@/components/home/universities";
 
 export default function Home() {
   return (
