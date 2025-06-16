@@ -1,14 +1,5 @@
 import Image from "next/image";
-import {
-  Search,
-  Plus,
-  GraduationCap,
-  DollarSign,
-  Award,
-  MapPin,
-  Users,
-  Plane,
-} from "lucide-react";
+import { Search, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -21,12 +12,46 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function ComaprisonComponent() {
+  const benefits = [
+    {
+      title: "Find the Best Fit for Your Goals",
+      description:
+        "Choose a university that aligns with your goals and future prospects.",
+    },
+    {
+      title: "Understand Tuition Fees & Costs",
+      description:
+        "Compare university fees, tuition, scholarships & living costs to budget smartly.",
+    },
+    {
+      title: "Check Course Quality & Recognition",
+      description: "Pick accredited programs with strong industry recognition.",
+    },
+    {
+      title: "Explore Post-Graduation Opportunities",
+      description: "Find universities with top placements & industry links.",
+    },
+    {
+      title: "Assess Campus Life & Student Support",
+      description: "Ensure a welcoming campus with great support services.",
+    },
+    {
+      title: "Location & Lifestyle Considerations",
+      description:
+        "City, coast, or countryside—choose what suits your lifestyle.",
+    },
+    {
+      title: "Visa & PR Pathways",
+      description: "Explore visa options and permanent residency pathways.",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-[#F6F6F7]">
       {/* Hero Section */}
       <div className="relative h-64 md:h-80 lg:h-96">
         <Image
-          src="/globe.png"
+          src="/compare.svg"
           alt="Library with books on shelves"
           fill
           className="object-cover"
@@ -46,7 +71,7 @@ export default function ComaprisonComponent() {
       <div className="container mx-auto px-4 py-12 lg:py-16">
         {/* Header Section */}
         <div className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-blue-800">
             Find the Best{" "}
             <span className="text-orange-500">University for You</span>
           </h2>
@@ -131,92 +156,26 @@ export default function ComaprisonComponent() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Benefit Cards */}
-          <Card className="text-center p-6 border-0 shadow-sm ">
-            <CardContent className="pt-6">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-                <GraduationCap className="w-8 h-8 text-orange-500" />
-              </div>
-              <h4 className="font-semibold text-blue-600 mb-3">
-                Find the Best Fit for Your Goals
-              </h4>
-              <p className="text-gray-600 text-sm">
-                Choose a university that aligns with your goals and future
-                prospects.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="text-center p-6 border-0 shadow-sm">
-            <CardContent className="pt-6">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <DollarSign className="w-8 h-8 text-orange-500" />
-              </div>
-              <h4 className="font-semibold text-blue-600 mb-3">
-                Understand Tuition Fees & Costs
-              </h4>
-              <p className="text-gray-600 text-sm">
-                Compare university fees, tuition, scholarships & living costs to
-                budget smartly.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="text-center p-6 border-0 shadow-sm">
-            <CardContent className="pt-6">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Award className="w-8 h-8 text-orange-500" />
-              </div>
-              <h4 className="font-semibold text-blue-600 mb-3">
-                Check Course Quality & Recognition
-              </h4>
-              <p className="text-gray-600 text-sm">
-                Pick accredited programs with strong industry recognition.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="text-center p-6 border-0 shadow-sm">
-            <CardContent className="pt-6">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <MapPin className="w-8 h-8 text-orange-500" />
-              </div>
-              <h4 className="font-semibold text-blue-600 mb-3">
-                Explore Post-Graduation Opportunities
-              </h4>
-              <p className="text-gray-600 text-sm">
-                Find universities with top placements & industry links.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="text-center p-6 border-0 shadow-sm">
-            <CardContent className="pt-6">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="w-8 h-8 text-orange-500" />
-              </div>
-              <h4 className="font-semibold text-blue-600 mb-3">
-                Assess Campus Life & Student Support
-              </h4>
-              <p className="text-gray-600 text-sm">
-                Ensure a welcoming campus with great support services.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="text-center p-6 border-0 shadow-sm">
-            <CardContent className="pt-6">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Plane className="w-8 h-8 text-orange-500" />
-              </div>
-              <h4 className="font-semibold text-blue-600 mb-3">
-                Visa & PR Pathways
-              </h4>
-              <p className="text-gray-600 text-sm">
-                Explore visa options and permanent residency pathways.
-              </p>
-            </CardContent>
-          </Card>
+          {benefits.map((benefit, index) => {
+            return (
+              <Card key={index} className="p-6 border-0 shadow-sm">
+                <CardContent className="pt-6">
+                  <div className="w-16 h-16 rounded-full mb-4">
+                    <Image
+                      src={`/benefit${index + 1}.svg`}
+                      width={70}
+                      height={70}
+                      alt="Icon"
+                    />
+                  </div>
+                  <h4 className="font-bold text-blue-600 mb-3">
+                    {benefit.title}
+                  </h4>
+                  <p className="text-gray-600 text-sm">{benefit.description}</p>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </div>
       <section className="mt-16 bg-orange-500">

@@ -56,7 +56,7 @@ export default function ContactPage() {
       {/* Hero Section */}
       <div className="relative h-64 md:h-80 lg:h-96">
         <Image
-          src="/globe.png"
+          src="/contactus.svg"
           alt="Library with books on shelves"
           fill
           className="object-cover"
@@ -114,7 +114,7 @@ export default function ContactPage() {
 
         {/* Contact Cards Section */}
         <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Card className="bg-orange-50 shadow-lg">
+          <Card className="bg-orange-500/10 shadow-lg">
             <CardContent className="pt-6 flex flex-col items-center text-center">
               <div className="p-3 bg-white rounded-full shadow">
                 <Phone className="w-8 h-8 text-orange-500" />
@@ -125,7 +125,7 @@ export default function ContactPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-orange-50 shadow-lg">
+          <Card className="bg-orange-500/10 shadow-lg">
             <CardContent className="pt-6 flex flex-col items-center text-center">
               <div className="p-3 bg-white rounded-full shadow">
                 <Mail className="w-8 h-8 text-orange-500" />
@@ -137,7 +137,7 @@ export default function ContactPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-orange-50 shadow-lg">
+          <Card className="bg-orange-500/10 shadow-lg">
             <CardContent className="pt-6 flex flex-col items-center text-center">
               <div className="p-3 bg-white rounded-full shadow">
                 <MapPin className="w-8 h-8 text-orange-500" />

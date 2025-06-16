@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const howToTransferData = [
   {
     name: "Check Transfer Policies",
@@ -75,14 +77,14 @@ export default function TransferAssistance() {
     <div className="bg-white font-sans">
       {/* Hero Section */}
       <section className="relative w-full h-[400px] text-white">
-        {/* <Image
-          src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop"
+        <Image
+          src="/transfer.svg"
           alt="University campus background"
           fill
           className="object-cover"
           priority
-        /> */}
-        <div className="absolute inset-0 bg-black/40" />
+        />
+        <div className="absolute inset-0 bg-black/20" />
         <div className="absolute inset-0 flex items-end">
           <div className="container mx-auto px-4 pb-8">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
@@ -132,13 +134,13 @@ export default function TransferAssistance() {
               </p>
             </div>
             <div className="md:w-1/3">
-              {/* <Image
-                src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop"
+              <Image
+                src="./transfer1.svg"
                 alt="Graduate looking at an audience"
-                width={500}
-                height={350}
+                width={750}
+                height={420}
                 className="rounded-lg shadow-lg object-cover w-full"
-              /> */}
+              />
             </div>
           </div>
         </section>
@@ -171,13 +173,13 @@ export default function TransferAssistance() {
               </ul>
             </div>
             <div className="md:w-1/3">
-              {/* <Image
-                src="https://images.unsplash.com/photo-1524293581277-708a48e28323?q=80&w=1974&auto=format&fit=crop"
+              <Image
+                src="./transfer2.svg"
                 alt="Sydney Opera House at sunset"
                 width={500}
                 height={350}
                 className="rounded-lg shadow-lg object-cover w-full"
-              /> */}
+              />
             </div>
           </div>
           <p className="text-center text-gray-600 mt-8 ">
@@ -288,13 +290,13 @@ export default function TransferAssistance() {
               </p>
             </div>
             <div className="md:w-1/3">
-              {/* <Image
-                src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1974&auto=format&fit=crop"
+              <Image
+                src="./transfer3.svg"
                 alt="Student with an advisor"
                 width={500}
                 height={400}
                 className="rounded-lg shadow-lg object-cover w-full"
-              /> */}
+              />
             </div>
           </div>
         </section>
@@ -303,13 +305,13 @@ export default function TransferAssistance() {
         <section className="mt-20">
           <div className="flex flex-col md:flex-row items-center gap-12 mt-12">
             <div className="md:w-1/3">
-              {/* <Image
-                src="https://i.imgur.com/gK5c44F.png" // Placeholder for books and graduation cap
+              <Image
+                src="./transfer4.svg"
                 alt="Graduation cap on books"
                 width={500}
                 height={400}
                 className="rounded-lg w-full"
-              /> */}
+              />
             </div>
             <div className="md:w-2/3 space-y-4">
               <h2 className="text-3xl font-bold text-blue-800 mb-4">
