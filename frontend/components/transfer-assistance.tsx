@@ -83,6 +83,8 @@ export default function TransferAssistance() {
           fill
           className="object-cover"
           priority
+          sizes="100vw"
+          quality={85}
         />
         <div className="absolute inset-0 bg-black/20" />
         <div className="absolute inset-0 flex items-end">
@@ -135,11 +137,13 @@ export default function TransferAssistance() {
             </div>
             <div className="md:w-1/3">
               <Image
-                src="./transfer1.svg"
+                src="/transfer1.svg"
                 alt="Graduate looking at an audience"
                 width={750}
                 height={420}
                 className="rounded-lg shadow-lg object-cover w-full"
+                loading="lazy"
+                quality={75}
               />
             </div>
           </div>
@@ -174,11 +178,14 @@ export default function TransferAssistance() {
             </div>
             <div className="md:w-1/3">
               <Image
-                src="./transfer2.svg"
+                src="/transfer2.svg"
                 alt="Sydney Opera House at sunset"
                 width={500}
                 height={350}
                 className="rounded-lg shadow-lg object-cover w-full"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                loading="lazy"
+                quality={75}
               />
             </div>
           </div>
@@ -291,11 +298,13 @@ export default function TransferAssistance() {
             </div>
             <div className="md:w-1/3">
               <Image
-                src="./transfer3.svg"
+                src="/transfer3.svg"
                 alt="Student with an advisor"
                 width={500}
                 height={400}
                 className="rounded-lg shadow-lg object-cover w-full"
+                quality={75}
+                loading="lazy"
               />
             </div>
           </div>
@@ -306,11 +315,14 @@ export default function TransferAssistance() {
           <div className="flex flex-col md:flex-row items-center gap-12 mt-12">
             <div className="md:w-1/3">
               <Image
-                src="./transfer4.svg"
+                src="/transfer4.svg"
                 alt="Graduation cap on books"
                 width={500}
                 height={400}
                 className="rounded-lg w-full"
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                quality={75}
               />
             </div>
             <div className="md:w-2/3 space-y-4">

@@ -166,6 +166,8 @@ export default function ComaprisonComponent() {
                       width={70}
                       height={70}
                       alt="Icon"
+                      loading="lazy"
+                      quality={25}
                     />
                   </div>
                   <h4 className="font-bold text-blue-600 mb-3">
