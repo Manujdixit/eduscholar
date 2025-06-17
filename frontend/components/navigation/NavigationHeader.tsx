@@ -33,7 +33,7 @@ export default function NavigationHeader() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden xl:flex items-center space-x-6">
             <Link href="/" className="text-gray-600 hover:text-blue-800">
               Home
             </Link>
@@ -61,7 +61,7 @@ export default function NavigationHeader() {
           </nav>
 
           {/* CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-3">
+          <div className="hidden xl:flex items-center space-x-3">
             <Button
               onClick={() => setIsModalOpen(true)}
               className="bg-blue-800 hover:bg-blue-900 text-white"
@@ -77,7 +77,7 @@ export default function NavigationHeader() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+          <button className="xl:hidden" onClick={() => setIsOpen(!isOpen)}>
             <svg
               className="w-6 h-6"
               fill="none"
@@ -96,7 +96,7 @@ export default function NavigationHeader() {
         </div>
 
         {/* Mobile Navigation */}
-        <div className={cn("md:hidden", isOpen ? "block" : "hidden")}>
+        <div className={cn("xl:hidden", isOpen ? "block" : "hidden")}>
           <div className="flex flex-col space-y-4 pt-4 pb-3">
             <Link
               href="/"
