@@ -1,10 +1,10 @@
 "use client";
-import { useArticles } from "@/hooks/useArticles";
 import Link from "next/link";
 import { ArticlesLoadingSkeleton } from "@/components/skeleton/article-skeleton";
+import { useTopArticles } from "@/hooks/useTopArticles";
 
 export default function ArticlesSection() {
-  const { articles, loading, error } = useArticles();
+  const { articles, loading, error } = useTopArticles();
 
   if (loading) {
     return <ArticlesLoadingSkeleton />;
@@ -33,9 +33,9 @@ export default function ArticlesSection() {
         </h2>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {articles.map((article) => (
+          {articles?.map((article: any) => (
             <div
-              key={article._id}
+              key={article.id}
               className="bg-[#F6F6F7] rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="relative h-48">

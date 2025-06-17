@@ -1,17 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export interface Article {
-  _id: string;
-  title: string;
-  description: string;
-  image?: string;
-  category?: string;
-  createdAt: string;
-}
-
 export function useArticles() {
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -19,7 +10,7 @@ export function useArticles() {
     const fetchArticles = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/articles/recent`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/articles/recent`
         );
         setArticles(response.data.data);
       } catch (err) {
