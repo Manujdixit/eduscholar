@@ -28,8 +28,6 @@ function Universitytabs({ tab, id }: UniversitytabsProps) {
       </div>
     );
 
-  console.log({ info });
-
   return (
     <div className="space-y-6">
       {info.map((item, index) => (
