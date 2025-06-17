@@ -3,6 +3,20 @@ import Link from "next/link";
 import { ArticlesLoadingSkeleton } from "@/components/skeleton/article-skeleton";
 import { useTopArticles } from "@/hooks/useTopArticles";
 
+interface Article {
+  id: number;
+  _id?: string;
+  title: string;
+  meta_desc: string;
+  description?: string;
+  author?: string;
+  published_date?: string;
+  createdAt?: string;
+  slug?: string;
+  image?: string;
+  category?: string;
+}
+
 export default function ArticlesSection() {
   const { articles, loading, error } = useTopArticles();
 
@@ -33,7 +47,7 @@ export default function ArticlesSection() {
         </h2>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {articles?.map((article: any) => (
+          {articles?.map((article: Article) => (
             <div
               key={article.id}
               className="bg-[#F6F6F7] rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
@@ -51,13 +65,15 @@ export default function ArticlesSection() {
                   <span>{article.category || "GENERAL"}</span>
                   <span className="mx-2">•</span>
                   <span>
-                    {new Date(article.createdAt)
-                      .toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                      })
-                      .toUpperCase()}
+                    {article.createdAt
+                      ? new Date(article.createdAt)
+                          .toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })
+                          .toUpperCase()
+                      : "DATE NOT AVAILABLE"}
                   </span>
                 </div>
                 <h3 className="font-bold text-lg text-blue-800 mb-2">

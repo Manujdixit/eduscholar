@@ -58,7 +58,7 @@ export default function SearchBar() {
         clearTimeout(debounceTimer);
       }
     };
-  }, [searchQuery, search]);
+  }, [searchQuery, search, debounceTimer]);
 
   const handleSearch = () => {
     if (searchQuery.trim()) {

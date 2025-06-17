@@ -4,6 +4,7 @@ import { useTopArticles } from "@/hooks/useTopArticles";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { Article } from "@/types/search";
 
 function StudentResources() {
   const { articles, loading, error } = useTopArticles();
@@ -33,7 +34,7 @@ function StudentResources() {
       {/* 2 blogs */}
       <section className="container mx-auto px-4 py-16">
         <div className="flex flex-col gap-8">
-          {articles?.articles.slice(0, 2).map((article: any, index: number) => (
+          {articles?.slice(0, 2).map((article: Article, index: number) => (
             <div
               key={article.id}
               className={`flex flex-col md:flex-row ${

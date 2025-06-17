@@ -6,7 +6,11 @@ import { notFound } from "next/navigation";
 import React from "react";
 import { toast } from "sonner";
 
-function page({ params }: { params: Promise<{ slugAndId: string }> }) {
+export default function Page({
+  params,
+}: {
+  params: Promise<{ slugAndId: string }>;
+}) {
   const { slugAndId } = React.use(params);
 
   const id = slugAndId.split("-").pop();
@@ -122,5 +126,3 @@ function page({ params }: { params: Promise<{ slugAndId: string }> }) {
     </div>
   );
 }
-
-export default page;

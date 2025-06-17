@@ -19,6 +19,9 @@ export interface Article {
   title: string;
   meta_desc: string;
   silos: string;
+  content: string;
+  image?: string;
+  createdAt: string;
 }
 
 export interface SearchResults {

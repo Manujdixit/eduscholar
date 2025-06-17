@@ -8,7 +8,18 @@ import {
 } from "lucide-react";
 import React from "react";
 
-function QuickFacts({ college }: any) {
+interface College {
+  location?: string;
+  founded?: number;
+  type?: string;
+  enrollment?: number;
+  website?: string;
+  acceptance_rate?: number;
+  total_students?: number;
+  international_student_rate?: number;
+}
+
+function QuickFacts({ college }: { college: College }) {
   return (
     <div>
       <div className="bg-[#FAF4F0] p-4 sm:p-6 h-fit w-full lg:w-[320px] lg:min-w-[320px] flex flex-col shadow-sm">
