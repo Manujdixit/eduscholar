@@ -94,6 +94,35 @@ const config: Config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      fontSize: {
+        body: [
+          "18px",
+          {
+            fontWeight: "400",
+            lineHeight: "27px",
+            letterSpacing: "0%",
+          },
+        ],
+        h1: [
+          "36px",
+          {
+            fontWeight: "600",
+            lineHeight: "100%",
+            letterSpacing: "0%",
+          },
+        ],
+        h2: [
+          "20px",
+          {
+            fontWeight: "600",
+            lineHeight: "100%",
+            letterSpacing: "0%",
+          },
+        ],
+      },
+      textColor: {
+        body: "[#242628]",
+      },
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
