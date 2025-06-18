@@ -3,11 +3,38 @@
 import { useTopArticles } from "@/hooks/useTopArticles";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Article } from "@/types/search";
+import PopularArticles from "./PopularArticles";
+import RecentArticles from "./RecentArticles";
+
+function getLimitByScreenSize(width: number): number {
+  if (width < 640) return 70; // mobile
+  if (width < 1024) return 100; // tablet
+  return 600; // desktop
+}
+
+function stripHtmlAndTruncate(html: string, limit: number): string {
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = html;
+  const text = tempDiv.textContent || tempDiv.innerText || "";
+  return text.length > limit ? text.slice(0, limit) + "..." : text;
+}
 
 function StudentResources() {
   const { articles, loading, error } = useTopArticles();
+
+  const [charLimit, setCharLimit] = useState(100);
+
+  useEffect(() => {
+    function handleResize() {
+      setCharLimit(getLimitByScreenSize(window.innerWidth));
+    }
+
+    handleResize(); // initial
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -39,16 +66,16 @@ function StudentResources() {
               key={article.id}
               className={`flex flex-col md:flex-row ${
                 index % 2 !== 0 ? "md:flex-row-reverse" : ""
-              } bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md md:shadow-none md:hover:shadow-none transition-shadow mb-6`}
+              } bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg md:shadow-none md:hover:shadow-none transition-shadow mb-6`}
             >
               {/* Image Section */}
-              <div className="w-full md:w-1/3 h-64 md:h-auto">
+              <div className="w-full md:w-1/3 h-64 md:h-auto overflow-hidden rounded-xl">
                 <Image
                   src={article.image || "/transfer3.svg"} // Replace with real image path
                   alt={article.title}
                   width={600}
                   height={400}
-                  className="object-cover w-full h-full"
+                  className="object-cover w-full h-full hover:scale-110 transition-transform duration-500 ease-in-out"
                 />
               </div>
 
@@ -65,22 +92,43 @@ function StudentResources() {
                       .toUpperCase()}
                   </span>
                 </div>
-                <h3 className="font-medium text-4xl  text-blue-800 mb-2">
-                  {article.title}
-                </h3>
-                <p className="text-gray-600 text-lg font-normal mb-4 truncate">
-                  {article.content}
-                </p>
                 <Link
+                  className="cursor-pointer"
                   href={`/student-resources/${article.id}`}
-                  className="text-orange-500 font-medium text-sm hover:underline"
                 >
-                  Read More
+                  <h3 className="font-medium text-4xl  text-blue-800 mb-2">
+                    {article.title}
+                  </h3>
+                </Link>
+                <p className="text-gray-600 text-lg font-normal mb-4">
+                  {stripHtmlAndTruncate(article.content, charLimit)}
+                </p>
+                <Link href={`/student-resources/${article.id}`}>
+                  <button className="font-medium text-sm  bg-orange-500 hover:bg-orange-600 p-4 text-white">
+                    Read More
+                  </button>
                 </Link>
               </div>
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="bg-orange-50">
+        <div className="container mx-auto  px-4 py-16">
+          <h2 className="text-4xl font-semibold text-blue-800">
+            Most Popular <span className="text-orange-500">Articles</span>
+          </h2>
+          {/* 4 cards of most popular articles */}
+          <PopularArticles />
+        </div>
+      </section>
+
+      <section className="container mx-auto px-4 py-24 flex justify-center flex-col">
+        <h2 className="text-4xl font-semibold text-blue-800 mb-4 text-center">
+          Most Recent <span className="text-orange-500">Articles</span>
+        </h2>
+        <RecentArticles />
       </section>
     </div>
   );
