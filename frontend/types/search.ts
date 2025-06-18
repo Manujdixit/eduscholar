@@ -4,6 +4,7 @@ export interface College {
   location: string;
   rating: number;
   score: number;
+  slug: string;
 }
 
 export interface Course {
@@ -22,6 +23,7 @@ export interface Article {
   content: string;
   image?: string;
   createdAt: string;
+  slug: string;
 }
 
 export interface SearchResults {

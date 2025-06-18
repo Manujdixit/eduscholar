@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useComprehensiveSearch } from "@/hooks/useComprehensiveSearch";
 import { College, Course, Article } from "@/types/search";
@@ -58,7 +57,7 @@ export default function SearchBar() {
         clearTimeout(debounceTimer);
       }
     };
-  }, [searchQuery, search, debounceTimer]);
+  }, [searchQuery, search]);
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
@@ -74,7 +73,7 @@ export default function SearchBar() {
     if (type === "college") {
       const college = item as College;
       setShowDropdown(false);
-      router.push(`/search?q=${encodeURIComponent(college.college_name)}`);
+      router.push(`/university/${college.slug}-${college.id}`);
     } else if (type === "course") {
       const course = item as Course;
       setShowDropdown(false);
@@ -82,7 +81,7 @@ export default function SearchBar() {
     } else if (type === "article") {
       const article = item as Article;
       setShowDropdown(false);
-      router.push(`/search?q=${encodeURIComponent(article.title)}`);
+      router.push(`/student-resources/${article.id}`);
     }
   };
 
@@ -102,19 +101,19 @@ export default function SearchBar() {
               type="text"
               value={searchQuery}
               onChange={handleInputChange}
-              onKeyPress={(e) => e.key === "Enter" && handleSearch()}
+              // onKeyPress={(e) => e.key === "Enter" && handleSearch()}
               onFocus={() =>
                 searchQuery.trim().length > 2 && setShowDropdown(true)
               }
               placeholder="Search for Universities, Courses and More"
               className="pl-10 pr-4 py-2 w-full rounded-md bg-blue-700 border-blue-600 text-white placeholder-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <Button
+            {/* <Button
               className="ml-2 bg-blue-600 hover:bg-blue-700 text-white"
               onClick={handleSearch}
             >
               Search
-            </Button>
+            </Button> */}
           </div>
 
           {/* Search Dropdown */}

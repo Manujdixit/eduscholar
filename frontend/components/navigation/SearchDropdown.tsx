@@ -32,8 +32,9 @@ export default function SearchDropdown({
   searchQuery,
   getTotalResults,
   onResultClick,
-  onViewAll,
 }: SearchDropdownProps) {
+  console.log({ results });
+
   return (
     <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-md shadow-lg border border-gray-200 z-50 max-h-96 overflow-y-auto">
       {loading ? (
@@ -56,7 +57,7 @@ export default function SearchDropdown({
                   </h3>
                 </div>
               </div>
-              {results.colleges.slice(0, 3).map((college) => (
+              {results.colleges.map((college) => (
                 <button
                   key={`college-${college.id}`}
                   onClick={() => onResultClick("college", college)}
@@ -100,7 +101,7 @@ export default function SearchDropdown({
                   <h3 className="text-sm font-medium text-gray-700">Courses</h3>
                 </div>
               </div>
-              {results.courses.slice(0, 3).map((course) => (
+              {results.courses.map((course) => (
                 <button
                   key={`course-${course.id}`}
                   onClick={() => onResultClick("course", course)}
@@ -146,7 +147,7 @@ export default function SearchDropdown({
                   </h3>
                 </div>
               </div>
-              {results.articles.slice(0, 3).map((article) => (
+              {results.articles.map((article) => (
                 <button
                   key={`article-${article.id}`}
                   onClick={() => onResultClick("article", article)}
@@ -167,18 +168,6 @@ export default function SearchDropdown({
                   </div>
                 </button>
               ))}
-            </div>
-          )}
-
-          {/* View All Results */}
-          {getTotalResults() > 9 && (
-            <div className="px-4 py-3 text-center border-t border-gray-100">
-              <button
-                onClick={onViewAll}
-                className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-              >
-                View all {getTotalResults()} results →
-              </button>
             </div>
           )}
         </div>
