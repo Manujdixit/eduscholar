@@ -1,21 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import React from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { AlertCircle, Loader2, Send } from "lucide-react";
-
-interface ContactFormProps {
-  formData: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-    message: string;
-  };
-  handleInputChange: (field: string, value: string) => void;
-  handleSubmit: (e: React.FormEvent) => void;
-  isLoading: boolean;
-  error: string | null;
-}
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
+import { Textarea } from "../ui/textarea";
 
 function ContactForm({
   formData,
@@ -23,7 +14,7 @@ function ContactForm({
   handleSubmit,
   isLoading,
   error,
-}: ContactFormProps) {
+}: any) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {error && (
@@ -62,21 +53,35 @@ function ContactForm({
         disabled={isLoading}
       />
 
-      <Input
-        placeholder="Phone Number"
-        type="tel"
-        value={formData.phone}
-        onChange={(e) => handleInputChange("phone", e.target.value)}
-        className="h-12 bg-gray-100 border-0 placeholder:text-gray-500 rounded-md"
-        required
-        disabled={isLoading}
-      />
+      <div
+        className={`flex flex-col-reverse react-international-phone-input-container ${
+          isLoading ? "disabled" : ""
+        }`}
+      >
+        {formData.phone.length < 8 && (
+          <div className="text-sm text-red-500">
+            Please enter a valid phone number
+          </div>
+        )}
+        <PhoneInput
+          defaultCountry="in"
+          value={formData.phone}
+          onChange={(phone) => handleInputChange("phone", phone)}
+          disabled={isLoading}
+          placeholder="Phone Number"
+          inputProps={{
+            required: true,
+            minLength: 8, // Minimum length for most international phone numbers
+          }}
+          name="phone"
+        />
+      </div>
 
-      <textarea
+      <Textarea
         placeholder="How may help you"
         value={formData.message}
         onChange={(e) => handleInputChange("message", e.target.value)}
-        className="w-full h-24 px-4 py-3 bg-gray-100 border-0 rounded-md text-gray-700 placeholder:text-gray-500 resize-none focus:ring-2 focus:ring-blue-500 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full h-24 px-4 py-3 bg-gray-100 border-0 rounded-md text-gray-700 placeholder:text-gray-500 resize-none focus:ring-2 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
         required
         disabled={isLoading}
       />

@@ -14,6 +14,8 @@ import {
 import { ChevronDown, Send, Calendar } from "lucide-react";
 import { useApplicationLead } from "@/hooks/useApplicationLead";
 import { toast } from "sonner";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
 
 interface ApplicationModalProps {
   open: boolean;
@@ -222,13 +224,29 @@ export function ApplicationModal({
               className="h-12 bg-gray-100 border-0 placeholder:text-gray-500"
             />
 
-            <Input
-              placeholder="Phone Number"
-              type="tel"
-              value={formData.phn_no}
-              onChange={(e) => handleInputChange("phn_no", e.target.value)}
-              className="h-12 bg-gray-100 border-0 placeholder:text-gray-500"
-            />
+            <div
+              className={`flex flex-col-reverse react-international-phone-input-container ${
+                isLoading ? "disabled" : ""
+              }`}
+            >
+              {formData.phn_no.length < 8 && (
+                <div className="text-sm text-red-500">
+                  Please enter a valid phone number
+                </div>
+              )}
+              <PhoneInput
+                defaultCountry="aus"
+                value={formData.phn_no}
+                onChange={(phone) => handleInputChange("phn_no", phone)}
+                disabled={isLoading}
+                placeholder="Phone Number"
+                inputProps={{
+                  required: true,
+                  minLength: 8, // Minimum length for most international phone numbers
+                }}
+                name="phone"
+              />
+            </div>
 
             <SelectField
               placeholder="Course preference"

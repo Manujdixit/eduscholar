@@ -49,7 +49,15 @@ export function ConsultationModal({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!formData.phone || formData.phone.replace(/\D/g, "").length < 5) {
+      toast.error("Please enter a valid phone number");
+      return;
+    }
+
+    console.log({ formData });
+
     try {
+      // Submit new data with phone to API
       await submitContactForm(formData);
       // Success - show toast and close modal
       toast.success("Request sent successfully!");

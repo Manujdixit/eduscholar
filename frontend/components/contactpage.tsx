@@ -38,6 +38,13 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Check if phone number is valid (not just country code)
+    // Most country codes are 1-3 digits, so we ensure phone is longer than country code + "+"
+    if (!formData.phone || formData.phone.replace(/\D/g, "").length < 5) {
+      toast.error("Please enter a valid phone number");
+      return;
+    }
+
     try {
       await submitContactForm(formData);
       toast.success("Request sent successfully!");

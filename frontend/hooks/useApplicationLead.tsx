@@ -1,25 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 
-interface ApplicationLeadData {
-  first_name: string;
-  last_name: string;
-  email: string;
-  phn_no: string;
-  course_preference: string;
-  gender: string;
-  dob: string;
-  preffered_intake: string;
-  preffered_state: string;
-  english_test: string;
-  visa: string;
-}
-
 export const useApplicationLead = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const submitApplication = async (data: ApplicationLeadData) => {
+  const submitApplication = async (data: any) => {
     setIsLoading(true);
     setError(null);
 
