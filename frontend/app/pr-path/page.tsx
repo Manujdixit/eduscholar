@@ -7,6 +7,12 @@ import {
   CircleDollarSign,
 } from "lucide-react";
 import PrApplicationSteps from "@/components/PrApplicationsSteps";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/radix-accordion";
 
 export default function PrPath() {
   return (
@@ -294,13 +300,95 @@ export default function PrPath() {
         </div>
 
         <div className="container pb-24">
-          {" "}
           <div className="flex-1">
             <h2 className="text-h1 text-blue-800 mb-6 text-center">
               FAQs on Best PR Courses in Australia 2025
             </h2>
 
-            <div className="text-body text-gray-950"></div>
+            <div className="max-w-4xl mx-auto">
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>
+                    What are the best PR courses in Australia for 2025?
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    The best PR courses in Australia for 2025 include Nursing,
+                    Engineering, Information Technology, Accounting, Teaching,
+                    Social Work, and various trade courses like Plumbing and
+                    Electrical work. These courses are aligned with Australia's
+                    skilled occupation lists and offer strong pathways to
+                    permanent residency.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-2">
+                  <AccordionTrigger>
+                    How long does it take to get PR after completing a course in
+                    Australia?
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    The time to obtain PR varies depending on your course,
+                    points score, and visa category. Generally, it can take
+                    12-24 months after graduation, provided you meet all
+                    requirements including work experience, English proficiency,
+                    and skills assessment.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-3">
+                  <AccordionTrigger>
+                    Do I need work experience to apply for PR after studying in
+                    Australia?
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    Yes, most PR pathways require relevant work experience. The
+                    amount varies by occupation - typically 1-3 years of skilled
+                    work experience in your field of study. Some occupations may
+                    have specific requirements, so it's important to check the
+                    current skilled occupation lists.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-4">
+                  <AccordionTrigger>
+                    What is the minimum points score required for Australian PR?
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    The minimum points score for SkillSelect is 65 points, but
+                    competitive scores are typically higher (80-90+ points)
+                    depending on your occupation. Points are awarded for age,
+                    English proficiency, educational qualifications, work
+                    experience, and other factors.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-5">
+                  <AccordionTrigger>
+                    Are trade courses good for PR in Australia?
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    Yes, trade courses are excellent for PR in Australia.
+                    Occupations like plumbing, electrical work, carpentry, and
+                    automotive trades are in high demand. Trade courses are
+                    shorter in duration, cost-effective, and offer good
+                    employment prospects with competitive salaries.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-6">
+                  <AccordionTrigger>
+                    Can I apply for PR while studying in Australia?
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    You can prepare your PR application while studying, but you
+                    typically need to complete your qualification first. You'll
+                    need to complete skills assessment, gather required
+                    documents, and ensure you meet all criteria before
+                    submitting your Expression of Interest (EOI).
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
           </div>
         </div>
       </div>
