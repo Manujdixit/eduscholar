@@ -13,6 +13,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/radix-accordion";
+import { PRCoursesTable } from "@/components/PrCoursesTable";
 
 export default function PrPath() {
   return (
@@ -114,11 +115,15 @@ export default function PrPath() {
             <h2 className="text-h1 text-blue-800">
               Regional Occupation List (ROL)
             </h2>
-            <p className="text-body py-2">Courses tied to these occupations:</p>
+            <p className="text-body my-6">Course tied to these occupations:</p>
+
+            <div className="mt-6">
+              <PRCoursesTable />
+            </div>
           </div>
 
           {/* What Are PR List Courses Section */}
-          <div className="flex flex-col lg:flex-row-reverse gap-8 items-start">
+          <div className="flex flex-col lg:flex-row-reverse gap-8 items-start py-12">
             <div className="flex-1">
               <h2 className="text-h1 text-blue-800 mb-6">
                 Popular Courses for PR in Australia

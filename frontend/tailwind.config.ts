@@ -119,6 +119,22 @@ const config: Config = {
             letterSpacing: "0%",
           },
         ],
+        h3: [
+          "16px",
+          {
+            fontWeight: "500",
+            lineHeight: "100%",
+            letterSpacing: "0%",
+          },
+        ],
+        h4: [
+          "16px",
+          {
+            fontWeight: "400",
+            lineHeight: "100%",
+            letterSpacing: "0%",
+          },
+        ],
       },
       textColor: {
         body: "[#242628]",
