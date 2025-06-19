@@ -269,6 +269,40 @@ export default function PrPath() {
             </div>
           </div>
         </div>
+
+        <div className="container py-24">
+          {" "}
+          <div className="flex-1">
+            <h2 className="text-h1 text-blue-800 mb-6">Final Thoughts </h2>
+
+            <div className="text-body text-gray-950">
+              <p className="mb-4">
+                Choosing the best courses for PR in Australia is crucial for a
+                successful career and migration pathway. Whether you opt for
+                trade courses in Australia for PR, IT, nursing, or engineering,
+                ensuring that your occupation is in demand can significantly
+                boost your PR prospects.
+              </p>
+              <p className="mb-4">
+                If you need assistance in selecting the right PR pathway courses
+                in Australia, our team is here to guide you throughout the
+                process. Contact us today for expert study assistance and PR
+                pathway planning!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="container pb-24">
+          {" "}
+          <div className="flex-1">
+            <h2 className="text-h1 text-blue-800 mb-6 text-center">
+              FAQs on Best PR Courses in Australia 2025
+            </h2>
+
+            <div className="text-body text-gray-950"></div>
+          </div>
+        </div>
       </div>
     </>
   );
